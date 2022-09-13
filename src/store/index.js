@@ -11,10 +11,17 @@ export default new Vuex.Store({
     storeCount: state => state.count
   },
   mutations: {
-    increment: state => state.count++,
+    increment: (state, payload) => {
+      state.count = state.count + payload
+    },
     decrement: state => state.count--
   },
   actions: {
+    increment: function (context, payload) {
+      setTimeout(function () {
+        context.commit('increment', payload)
+      }, 2000)
+    }
   },
   modules: {
   }
